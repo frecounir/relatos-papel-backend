@@ -14,7 +14,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Document(indexName = "books", createIndex = true)
 @Getter

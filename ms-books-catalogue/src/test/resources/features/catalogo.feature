@@ -5,6 +5,6 @@ Feature: Gestión del Catálogo de Libros
 
   Scenario: Obtener detalles de un libro por su ID
     Given que el libro con ID "10" existe en el catálogo
-    When realizo una petición GET a "/books/10"
+    When realizo una petición GET a "/book/syV6mJwBDlcDp9kMtUio"
     Then la respuesta debe tener un código de estado 200
-    And el título del libro debe ser "Deep Work"
+    And el título del libro debe ser "Test book"

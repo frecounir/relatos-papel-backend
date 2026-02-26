@@ -19,7 +19,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @RequestMapping("/book")
 public class BookOpenSearchController {
-    @Autowired
     private final IBookOpenSearchService service;
 
     @GetMapping
@@ -41,7 +40,7 @@ public class BookOpenSearchController {
     @GetMapping("/{bookId}")
     public ResponseEntity<BookIndex> getBook(@PathVariable String bookId) {
 
-        log.info("Request received for product {}", bookId);
+        log.info("Request received for Book {}", bookId);
         BookIndex book = service.getBook(bookId);
 
         if (book != null) {
@@ -53,7 +52,7 @@ public class BookOpenSearchController {
     }
 
     @DeleteMapping("/{bookId}")
-    public ResponseEntity<Void> deleteProduct(@PathVariable String bookId) {
+    public ResponseEntity<Void> deleteBook(@PathVariable String bookId) {
 
         Boolean removed = service.removeBook(bookId);
 
@@ -66,12 +65,12 @@ public class BookOpenSearchController {
     }
 
     @PostMapping
-    public ResponseEntity<BookIndex> getProduct(@RequestBody CreateBookIndexRequest request) {
+    public ResponseEntity<BookIndex> getBook(@RequestBody CreateBookIndexRequest request) {
 
-        BookIndex createdProduct = service.createBook(request);
+        BookIndex createdBook = service.createBook(request);
 
-        if (createdProduct != null) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(createdProduct);
+        if (createdBook != null) {
+            return ResponseEntity.status(HttpStatus.CREATED).body(createdBook);
         } else {
             return ResponseEntity.badRequest().build();
         }

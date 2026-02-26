@@ -18,21 +18,21 @@ public class BookOpenSearchService implements IBookOpenSearchService {
 
     @Override
     public BooksQueryResponse getBooks(String title, String author, String editorial, String genres, String rating, String price, Boolean aggregate) {
-        //Ahora por defecto solo devolvera productos visibles
+        //Ahora por defecto solo devolvera libros visibles
         return repository.findBooks(title, author, editorial, genres, rating, price, aggregate);
     }
 
     @Override
-    public BookIndex getBook(String productId) {
-        return repository.findById(productId).orElse(null);
+    public BookIndex getBook(String bookId) {
+        return repository.findById(bookId).orElse(null);
     }
 
     @Override
-    public Boolean removeBook(String productId) {
+    public Boolean removeBook(String bookId) {
 
-        BookIndex product = repository.findById(productId).orElse(null);
-        if (product != null) {
-            repository.delete(product);
+        BookIndex book = repository.findById(bookId).orElse(null);
+        if (book != null) {
+            repository.delete(book);
             return Boolean.TRUE;
         } else {
             return Boolean.FALSE;
@@ -55,7 +55,7 @@ public class BookOpenSearchService implements IBookOpenSearchService {
                 && request.getStock() >= 0
                 && request.getVisible() != null) {
 
-            BookIndex product = BookIndex.builder()
+            BookIndex book = BookIndex.builder()
                     .title(request.getTitle())
                     .author(request.getAuthor())
                     .editorial(request.getEditorial())
@@ -69,7 +69,7 @@ public class BookOpenSearchService implements IBookOpenSearchService {
                     .stock(request.getStock())
                     .visible(request.getVisible()).build();
 
-            return repository.save(product);
+            return repository.save(book);
         } else {
             return null;
         }
