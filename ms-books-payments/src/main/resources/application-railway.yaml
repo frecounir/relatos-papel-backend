@@ -7,4 +7,4 @@ eureka:
     secure-port: 443
 
 catalogueService:
-  url: http://ms-books-catalogue.railway.internal:8089/books/
+  url: http://ms-books-catalogue.railway.internal:8089/book/
