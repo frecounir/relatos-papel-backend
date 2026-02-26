@@ -1,6 +1,7 @@
 services:
   db-books:
     image: postgres:15-alpine
+    command: postgres -c max_connections=500 -c shared_buffers=1GB
     container_name: postgres-books-catalogue
     environment:
       POSTGRES_DB: books_db
