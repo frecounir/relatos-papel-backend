@@ -16,5 +16,12 @@ RUN mvn clean package
 # Marcamos el punto de arranque de la imagen con el comando "java -jar app.jar" que ejecutará nuestro componente.
 FROM eclipse-temurin:25-jre
 EXPOSE 8089
+
+# --- VARIABLES DE ENTORNO ---
+ENV OPENSEARCH_HOST=elegant-norfolk-isla-1mnenx18.us-east-1.bonsaisearch.net
+ENV OPENSEARCH_PASS=da2755b94e0208357212
+ENV OPENSEARCH_USER=0d4892825a
+# ----------------------------
+
 COPY --from=build /target/ms-books-catalogue-0.0.1-SNAPSHOT.jar app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]
